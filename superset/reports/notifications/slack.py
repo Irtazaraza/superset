@@ -99,11 +99,11 @@ class SlackNotification(SlackMixin, BaseNotification):  # pylint: disable=too-fe
         try:
             client = get_slack_client()
             channel = self._get_channel()
-            # files_upload returns SlackResponse as we run it in sync mode.
+            # files_upload_v2 returns SlackResponse as we run it in sync mode.
             if files:
                 for file in files:
-                    client.files_upload(
-                        channels=channel,
+                    client.files_upload_v2(
+                        channel=channel,
                         file=file,
                         initial_comment=body,
                         title=title,
